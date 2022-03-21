@@ -152,9 +152,9 @@ export default ({ vault, plugin }) => {
                                 event.type,
                                 'video' in props
                                     ? new Proxy(event, {
-                                          get: (target, prop) =>
-                                              prop == 'origin' ? 'https://www.youtube.com' : target[prop]
-                                      })
+                                        get: (target, prop) =>
+                                            prop == 'origin' ? 'https://www.youtube.com' : target[prop]
+                                    })
                                     : event
                             );
 
@@ -529,7 +529,7 @@ export default ({ vault, plugin }) => {
                                 (plugin as AnnotatorPlugin).dragData = {
                                     annotationFilePath: props.annotationFile,
                                     annotationId: annotation.id,
-                                    annotationText: exact
+                                    annotationText: `\n---\n${exact}`
                                 };
                             }
                         };
@@ -621,7 +621,7 @@ function patchSidebarMarkdownRendering(iframe: HTMLIFrameElement, filePath: stri
             if (!existingKeys.has(key)) {
                 IframeElement.prototype[key] = Element.prototype[key];
             }
-        } catch (e) {}
+        } catch (e) { }
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
